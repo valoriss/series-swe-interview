@@ -10,8 +10,8 @@ export const specialItems = {
 }
 
 /* If true, update the quality of an item  */
-const underMaxQuality = (quality: number): boolean => {
-    return quality < MAX_QUALITY
+const exceedsMaxQuality = (quality: number): boolean => {
+    return quality >= MAX_QUALITY
 }
 
 /* If true, update the quality of an item  */
@@ -21,7 +21,22 @@ const exceedsMinQuality = (quality: number): boolean => {
 
 const passedSellByDate = (sellBy: number) => sellBy < 0;
 
+export const updateAgedBrie = (item: Item) : Item => {
+    /* Aged brie increases in quality EOD, so increment */
+    item.quality = incrementQuality(item);
+    item.sellIn = decrementSellIn(item)
 
+    return item
+}
+
+const incrementQuality = (item: Item): number => {
+    const incrementBy = passedSellByDate(item.sellIn) ? 2 : 1
+
+    if (exceedsMaxQuality(item.quality)) return item.quality;
+
+    // increment quality
+    return item.quality += incrementBy
+}
 
 /* Only decrement quality if the quality exceeds the min quality */
 const decrementQuality = (item: Item): number => {

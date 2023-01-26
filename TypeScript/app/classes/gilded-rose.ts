@@ -1,5 +1,5 @@
 import { Item } from '@/classes/item';
-import { isBaseItem, specialItems, updateQualityBaseItem } from '../helpers/updateQuality';
+import { isBaseItem, specialItems, updateAgedBrie, updateQualityBaseItem } from '../helpers/updateQuality';
 
 export class GildedRose {
   items: Array<Item>;
@@ -14,13 +14,11 @@ export class GildedRose {
       const { name } = item
       const isRegularItem = isBaseItem(name) // TODO, decide if this function is worth having for future use cases
 
-      if (isRegularItem) {
-        return updateQualityBaseItem(item)
-      }
+      if (isRegularItem)  return updateQualityBaseItem(item)
+     
 
-      if (name === specialItems.brie) {
-        // decrement for brie
-      }
+      if (name === specialItems.brie)  return updateAgedBrie(item)
+      
 
 
       if (name === specialItems.sulfaras) {
