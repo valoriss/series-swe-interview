@@ -41,13 +41,52 @@ export const updateSulfaras = (item: Item) : Item => {
      return item;
 }
 
-const incrementQuality = (item: Item): number => {
+export const updateBackstagePasses = (item: Item): Item => {
+    /* if the sell in date has passed, aka it is after the concert, quality drops to 0 */
+    if (item.sellIn < 0) {
+        item.quality = 0;
+        item.sellIn = decrementSellIn(item)
+
+        return item
+    }
+
+    /* if there are 5 or less days, increment quality by 3 */
+    if (item.sellIn <= 5) {
+        item.quality = incrementQuality(item, 3)
+        item.sellIn = decrementSellIn(item)
+
+        return item
+    }
+
+    /* if there are more than 5 but less than 11 days, increment by 2 */
+    if (item.sellIn <= 10) {
+        item.quality = incrementQuality(item, 2)
+        item.sellIn = decrementSellIn(item)
+
+        return item
+    }
+
+    /* if sell in date is greater than 10, increment like aged brie */
+    item.quality = incrementQuality(item)
+    item.sellIn = decrementSellIn(item)
+
+    return item
+    /*
+Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+Quality drops to 0 after the concert */
+}
+
+const incrementQuality = (item: Item, incrementByOverride: number = 0): number => {
     const incrementBy = passedSellByDate(item.sellIn) ? 2 : 1
 
     if (exceedsMaxQuality(item.quality)) return item.quality;
 
     // increment quality
-    return item.quality += incrementBy
+    item.quality += incrementByOverride || incrementBy
+
+    if (exceedsMaxQuality(item.quality)) return item.quality = MAX_QUALITY
+
+    return item.quality
 }
 
 /* Only decrement quality if the quality exceeds the min quality */

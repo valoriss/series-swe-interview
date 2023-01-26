@@ -69,3 +69,28 @@ describe('update quality sulfaras', () => {
     expect(item.quality).toBe(80);
   });
 });
+
+
+describe('update quality backstage passes', () => {
+  it('quality increments by 2 if sellin <= 10', () => {
+    const itemName = 'Backstage passes to a TAFKAL80ETC concert';
+    const gildedRose = new GildedRose([new Item(itemName, 15, 20)]);
+
+    const [item] = updateQualityRecursive(gildedRose, 11).items
+
+    expect(item.name).toBe(itemName);
+    expect(item.sellIn).toBe(4);
+    expect(item.quality).toBe(38);
+  });
+
+  it('quality increments but never exceeds 50', () => {
+    const itemName = 'Backstage passes to a TAFKAL80ETC concert';
+    const gildedRose = new GildedRose([new Item(itemName, 10, 47)]);
+
+    const [item] = updateQualityRecursive(gildedRose, 11).items
+
+    expect(item.name).toBe(itemName);
+    expect(item.sellIn).toBe(-1);
+    expect(item.quality).toBe(50);
+  });
+});
