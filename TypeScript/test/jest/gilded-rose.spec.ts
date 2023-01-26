@@ -4,7 +4,6 @@ import { Item } from '@/classes/item'
 const updateQualityRecursive = (gildedRose: GildedRose, limit ) : GildedRose => {
   if (!limit) return gildedRose;
 
-  console.log(limit)
   gildedRose.updateQuality();
 
   return updateQualityRecursive(gildedRose, limit -= 1);
@@ -22,13 +21,13 @@ describe('Gilded Rose', () => {
 describe('update quality base item', () => {
   it('quality is decremented if conditions are met, sellin is decremented', () => {
     const itemName = 'foo';
-    const gildedRose = new GildedRose([new Item(itemName, 1, 1)]);
+    const gildedRose = new GildedRose([new Item(itemName, 5, 7)]);
 
-    const [item] = updateQualityRecursive(gildedRose, 2).items
+    const [item] = updateQualityRecursive(gildedRose, 9).items
 
 
     expect(item.name).toBe(itemName);
-    expect(item.sellIn).toBe(-1);
+    expect(item.sellIn).toBe(-4);
     expect(item.quality).toBe(0);
   });
 });
@@ -42,7 +41,7 @@ describe('update quality aged brie', () => {
 
     expect(item.name).toBe(itemName);
     expect(item.sellIn).toBe(-11);
-    expect(item.quality).toBe(21);
+    expect(item.quality).toBe(22);
   });
 
   it('quality is incremented and quality never exceeds max value', () => {
@@ -80,10 +79,21 @@ describe('update quality backstage passes', () => {
 
     expect(item.name).toBe(itemName);
     expect(item.sellIn).toBe(4);
-    expect(item.quality).toBe(38);
+    expect(item.quality).toBe(40);
   });
 
   it('quality increments but never exceeds 50', () => {
+    const itemName = 'Backstage passes to a TAFKAL80ETC concert';
+    const gildedRose = new GildedRose([new Item(itemName, 10, 47)]);
+
+    const [item] = updateQualityRecursive(gildedRose, 9).items
+
+    expect(item.name).toBe(itemName);
+    expect(item.sellIn).toBe(1);
+    expect(item.quality).toBe(50);
+  });
+
+  it('quality increments but drops to zero after the concert', () => {
     const itemName = 'Backstage passes to a TAFKAL80ETC concert';
     const gildedRose = new GildedRose([new Item(itemName, 10, 47)]);
 
@@ -91,6 +101,6 @@ describe('update quality backstage passes', () => {
 
     expect(item.name).toBe(itemName);
     expect(item.sellIn).toBe(-1);
-    expect(item.quality).toBe(50);
+    expect(item.quality).toBe(0);
   });
 });

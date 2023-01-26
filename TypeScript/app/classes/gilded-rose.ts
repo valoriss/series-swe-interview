@@ -17,12 +17,13 @@ export class GildedRose {
       if (isRegularItem)  return updateQualityBaseItem(item)
      
 
-      if (name === specialItems.brie)  return updateAgedBrie(item)
+      if (name === specialItems.brie) return updateAgedBrie(item)
       
 
 
-      if (name === specialItems.sulfaras) return updateSulfaras(item)
-
+      if (name === specialItems.sulfaras){ 
+        return updateSulfaras(item)
+}
 
       if (name === specialItems.conjured) {
         // decrement for conjured

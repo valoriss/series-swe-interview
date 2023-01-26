@@ -22,9 +22,9 @@ const exceedsMinQuality = (quality: number): boolean => {
 const passedSellByDate = (sellBy: number) => sellBy < 0;
 
 export const updateAgedBrie = (item: Item) : Item => {
+    item.sellIn = decrementSellIn(item)
     /* Aged brie increases in quality EOD, so increment */
     item.quality = incrementQuality(item);
-    item.sellIn = decrementSellIn(item)
 
     return item
 }
@@ -41,34 +41,32 @@ export const updateSulfaras = (item: Item) : Item => {
      return item;
 }
 
+// export const updateConjured = (item: Item): Item => {
+
+// }
+
 export const updateBackstagePasses = (item: Item): Item => {
+    item.sellIn = decrementSellIn(item)
     /* if the sell in date has passed, aka it is after the concert, quality drops to 0 */
     if (item.sellIn < 0) {
         item.quality = 0;
-        item.sellIn = decrementSellIn(item)
-
         return item
     }
 
     /* if there are 5 or less days, increment quality by 3 */
     if (item.sellIn <= 5) {
         item.quality = incrementQuality(item, 3)
-        item.sellIn = decrementSellIn(item)
-
         return item
     }
 
     /* if there are more than 5 but less than 11 days, increment by 2 */
     if (item.sellIn <= 10) {
         item.quality = incrementQuality(item, 2)
-        item.sellIn = decrementSellIn(item)
-
         return item
     }
 
     /* if sell in date is greater than 10, increment like aged brie */
     item.quality = incrementQuality(item)
-    item.sellIn = decrementSellIn(item)
 
     return item
     /*
@@ -82,7 +80,7 @@ const incrementQuality = (item: Item, incrementByOverride: number = 0): number =
     if (exceedsMaxQuality(item.quality)) return item.quality;
 
     // increment quality
-    item.quality += incrementByOverride || incrementBy
+    item.quality += (incrementByOverride || incrementBy)
 
     if (exceedsMaxQuality(item.quality)) return item.quality = MAX_QUALITY
 
@@ -105,11 +103,12 @@ const decrementQuality = (item: Item): number => {
 const decrementSellIn = (item: Item): number => item.sellIn -= 1
 
 export const updateQualityBaseItem = (item: Item) :Item => {
-    /* The quality of the item will be decreased
-     by a factor of 1 or 2 depending on the sell in date */
-    item.quality = decrementQuality(item);
     /* for base items, the sell in date is always decremented by a factor of 1 */
     item.sellIn = decrementSellIn(item);
+
+    /* The quality of the item will be decreased
+    by a factor of 1 or 2 depending on the sell in date */
+    item.quality = decrementQuality(item);
 
     return item
 }
