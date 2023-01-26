@@ -1,7 +1,7 @@
 import { Item } from '@/classes/item';
 import { MAX_QUALITY, MIN_QUALITY } from "./enum";
 
-// potentially move to enums
+// TODO potentially move to enums
 export const specialItems = {
     brie: 'Aged Brie',
     sulfaras: 'Sulfuras, Hand of Ragnaros',
@@ -73,9 +73,6 @@ export const updateBackstagePasses = (item: Item): Item => {
     item.quality = incrementQuality(item)
 
     return item
-    /*
-Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
-Quality drops to 0 after the concert */
 }
 
 const incrementQuality = (item: Item, incrementByOverride: number = 0): number => {
