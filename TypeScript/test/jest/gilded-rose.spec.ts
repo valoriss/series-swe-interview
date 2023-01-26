@@ -56,3 +56,16 @@ describe('update quality aged brie', () => {
     expect(item.quality).toBe(50);
   });
 });
+
+describe('update quality sulfaras', () => {
+  it('quality and sellin is never incremented for sulfaras', () => {
+    const itemName = 'Sulfuras, Hand of Ragnaros';
+    const gildedRose = new GildedRose([new Item(itemName, 0, 80)]);
+    
+    const [item] = updateQualityRecursive(gildedRose, 11).items
+
+    expect(item.name).toBe(itemName);
+    expect(item.sellIn).toBe(0);
+    expect(item.quality).toBe(80);
+  });
+});

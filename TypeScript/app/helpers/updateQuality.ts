@@ -29,6 +29,18 @@ export const updateAgedBrie = (item: Item) : Item => {
     return item
 }
 
+export const updateSulfaras = (item: Item) : Item => {
+    /* "Sulfuras", being a legendary item,
+     never has to be sold. For clarity, increment by zero */
+     item.sellIn += 0
+
+     /* "Sulfuras" is a legendary item and as such
+     its Quality is 80 and it never alters. */
+     item.quality = 80 // TODO, move to ENUM
+
+     return item;
+}
+
 const incrementQuality = (item: Item): number => {
     const incrementBy = passedSellByDate(item.sellIn) ? 2 : 1
 

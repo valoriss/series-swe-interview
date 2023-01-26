@@ -1,5 +1,5 @@
 import { Item } from '@/classes/item';
-import { isBaseItem, specialItems, updateAgedBrie, updateQualityBaseItem } from '../helpers/updateQuality';
+import { isBaseItem, specialItems, updateAgedBrie, updateQualityBaseItem, updateSulfaras } from '../helpers/updateQuality';
 
 export class GildedRose {
   items: Array<Item>;
@@ -21,9 +21,7 @@ export class GildedRose {
       
 
 
-      if (name === specialItems.sulfaras) {
-        // decrement for sulfaras
-      }
+      if (name === specialItems.sulfaras) return updateSulfaras(item)
 
 
       if (name === specialItems.conjured) {
