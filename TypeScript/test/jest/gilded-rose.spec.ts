@@ -108,7 +108,7 @@ describe('update quality backstage passes', () => {
 
 describe('update quality conjured', () => {
   it('quality decreases twice as fast as normal items', () => {
-    const itemName = 'Conjured';
+    const itemName = 'Conjured Mana Cake';
     const gildedRose = new GildedRose([new Item(itemName, 0, 20)]);
     
     const [item] = updateQualityRecursive(gildedRose, 11).items

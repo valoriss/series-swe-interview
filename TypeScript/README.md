@@ -10,9 +10,6 @@ Install dependencies
 npm install
 ```
 
-```sh
-npm i --save-dev @types/node
-```
 
 ## Running app
 _You may need to install `ts-node`_
