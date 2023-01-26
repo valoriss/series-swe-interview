@@ -10,11 +10,11 @@ ___
 
 Gilded Rose Kata currently fully supports updating quality for the following goods:
 
-1. <input type="checkbox" checked> Conjured Mana Cake 
-2. <input type="checkbox" checked> Backstage passes to a TAFKAL80ETC concert
-3. <input type="checkbox" checked> Sulfuras, Hand of Ragnaros
-4. <input type="checkbox" checked> Aged Brie
-5. <input type="checkbox" checked> Any normal item
+1. Conjured Mana Cake 
+2. Backstage passes to a TAFKAL80ETC concert
+3. Sulfuras, Hand of Ragnaros
+4. Aged Brie
+5. Any normal item
 
 
 > **_NOTE:_** "Any normal item", as mentioned in feature (6) is any item that does not meet the requirements of items 1 through 5 in the feature list.
@@ -24,14 +24,14 @@ ___
 
 Given the requirements of Gilded Rose, we may choose to support any special items that contain specific key words. To avoid overengineering, these features have not been added yet:
 
-<input type="checkbox" > Any item that starts with "Conjured" \
-<input type="checkbox" > Any item that includes "Backstage passes" \
-<input type="checkbox" > Any item that includes "Sulfuras" \
-<input type="checkbox" > Any item that includes "Aged Brie" \
-<input type="checkbox" > Prettier or Eslint formatting rules \
-<input type="checkbox" > Implement more test cases if required \
-<input type="checkbox" > Sometimes ts-node and absolute paths don't work nicely with each other in a consistent matter. Explore options to compile the absolute paths. I found this on the `ts-node` docs https://github.com/TypeStrong/ts-node#paths-and-baseurl \
-<input type="checkbox" > Include tests for glided-rose constructor
+- Any item that starts with "Conjured" \
+- Any item that includes "Backstage passes" \
+- Any item that includes "Sulfuras" \
+- Any item that includes "Aged Brie" \
+- Prettier or Eslint formatting rules \
+- Implement more test cases if required \
+- Sometimes ts-node and absolute paths don't work nicely with each other in a consistent matter. Explore options to compile the absolute paths. I found this on the `ts-node` docs https://github.com/TypeStrong/ts-node#paths-and-baseurl \
+- Include tests for glided-rose constructor
 
 ## Project structure
 Below is the current project structure. Hopefully collaborators find it useful.
