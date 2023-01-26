@@ -29,7 +29,7 @@ Given the requirements of Gilded Rose, we may choose to support any special item
 <input type="checkbox" > Any item that includes "Sulfuras" \
 <input type="checkbox" > Any item that includes "Aged Brie" \
 <input type="checkbox" > Prettier or Eslint formatting rules \
-<input type="checkbox" > Implementing app logs for production monitoring \
+<input type="checkbox" > Implement more test cases if required \
 <input type="checkbox" > Sometimes ts-node and absolute paths don't work nicely with each other in a consistent matter. Explore options to compile the absolute paths. I found this on the `ts-node` docs https://github.com/TypeStrong/ts-node#paths-and-baseurl \
 <input type="checkbox" > Include tests for glided-rose constructor
 
