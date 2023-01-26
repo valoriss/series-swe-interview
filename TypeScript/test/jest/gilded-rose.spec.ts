@@ -1,6 +1,7 @@
 import { GildedRose } from '@/classes/gilded-rose';
 import { Item } from '@/classes/item'
 
+// TODO, move to a new folder called helpers in jest/helpers
 const updateQualityRecursive = (gildedRose: GildedRose, limit ) : GildedRose => {
   if (!limit) return gildedRose;
 
@@ -97,10 +98,23 @@ describe('update quality backstage passes', () => {
     const itemName = 'Backstage passes to a TAFKAL80ETC concert';
     const gildedRose = new GildedRose([new Item(itemName, 10, 47)]);
 
+    const [item] = updateQualityRecursive(gildedRose, 12).items
+
+    expect(item.name).toBe(itemName);
+    expect(item.sellIn).toBe(-2);
+    expect(item.quality).toBe(0);
+  });
+});
+
+describe('update quality conjured', () => {
+  it('quality decreases twice as fast as normal items', () => {
+    const itemName = 'Conjured';
+    const gildedRose = new GildedRose([new Item(itemName, 0, 20)]);
+    
     const [item] = updateQualityRecursive(gildedRose, 11).items
 
     expect(item.name).toBe(itemName);
-    expect(item.sellIn).toBe(-1);
+    expect(item.sellIn).toBe(-11);
     expect(item.quality).toBe(0);
   });
 });

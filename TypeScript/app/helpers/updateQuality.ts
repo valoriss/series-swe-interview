@@ -41,9 +41,13 @@ export const updateSulfaras = (item: Item) : Item => {
      return item;
 }
 
-// export const updateConjured = (item: Item): Item => {
+export const updateConjured = (item: Item): Item => {
+    item.sellIn = decrementSellIn(item);
+    item.quality = decrementQuality(item);
+    item.quality = decrementQuality(item);
 
-// }
+    return item
+}
 
 export const updateBackstagePasses = (item: Item): Item => {
     item.sellIn = decrementSellIn(item)
